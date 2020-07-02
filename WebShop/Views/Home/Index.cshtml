@@ -1,13 +1,16 @@
-﻿<!DOCTYPE html>
+﻿<partial name="Partial/_Slider"/>
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>WebStore - Главная</title>
-</head>
-<body>
+<section>
+    <div class="container">
+        <div class="row">
+            <partial name="Partial/_LeftSideBar"/>
 
-    <p>Home controller - View Index</p>
-    <p><a href="~/Home/employees">Список сотрудников</a></p>
-</body>
-</html>
+            <div class="col-sm-9 padding-right">
+                <partial name="Partial/_FeaturesItems"/>
+                <partial name="Partial/_CategoryTab"/>
+                <partial name="Partial/_RecomendedItems"/>
+
+            </div>
+        </div>
+    </div>
+</section>
