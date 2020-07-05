@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using WebShop.Infrastructure.Middleware;
 
 namespace WebShop
 {
@@ -32,6 +33,9 @@ namespace WebShop
             app.UseDefaultFiles();
 
             app.UseRouting();
+            app.UseWelcomePage("/welcome");
+
+            app.UseMiddleware<TestMiddleware>();
 
             app.UseEndpoints(endpoints =>
             {
