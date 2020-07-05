@@ -4,7 +4,9 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using WebShop.Infrastructure.Interfaces;
 using WebShop.Infrastructure.Middleware;
+using WebShop.Infrastructure.Services;
 
 namespace WebShop
 {
@@ -19,6 +21,8 @@ namespace WebShop
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
+            
+            services.AddScoped<IEmployeesData, InMemoryEmployeesData>();
         }
 
         
