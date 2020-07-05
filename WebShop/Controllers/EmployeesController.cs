@@ -75,6 +75,7 @@ namespace WebShop.Controllers
         }
         #endregion
 
+        #region Delete
         public IActionResult Delete(int id)
         {
             if (id <= 0)
@@ -93,5 +94,15 @@ namespace WebShop.Controllers
                 Age = employee.Age
             });
         }
+
+        [HttpPost]
+        public IActionResult DeleteConfirmed(int id)
+        {
+            _employeesData.Delete(id);
+            _employeesData.SaveChanges();
+
+            return RedirectToAction(nameof(Index));
+        }
+        #endregion
     }
 }
