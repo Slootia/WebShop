@@ -6,7 +6,7 @@ using WebShop.Models;
 
 namespace WebShop.Infrastructure.Interfaces
 {
-    interface IEmployeesData
+    public interface IEmployeesData
     {
         IEnumerable<Employee> Get();
 
