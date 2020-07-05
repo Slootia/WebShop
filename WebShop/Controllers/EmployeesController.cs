@@ -1,5 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.VisualStudio.Web.CodeGeneration;
 using WebShop.Infrastructure.Interfaces;
+using WebShop.Models;
 using WebShop.ViewModels;
 
 namespace WebShop.Controllers
@@ -22,6 +25,7 @@ namespace WebShop.Controllers
             return View(employee);
         }
 
+        #region Edit
         public IActionResult Edit(int? id)
         {
             if (id is null)
@@ -48,7 +52,46 @@ namespace WebShop.Controllers
         [HttpPost]
         public IActionResult Edit(EmployeesViewModel model)
         {
+            if (model is null)
+                throw new ArgumentNullException();
+
+            var employee = new Employee
+            {
+                Id = model.Id,
+                Surname = model.LastName,
+                Name = model.FirstName,
+                Patronymic = model.Patronymic,
+                Age = model.Age
+            };
+
+            if (model.Id == 0)
+                _employeesData.Add(employee);
+            else
+                _employeesData.Edit(employee);
+
+            _employeesData.SaveChanges();
+
             return RedirectToAction(nameof(Index));
+        }
+        #endregion
+
+        public IActionResult Delete(int id)
+        {
+            if (id <= 0)
+                return BadRequest();
+
+            var employee = _employeesData.GetById(id);
+            if (employee is null)
+                return NotFound();
+
+            return View(new EmployeesViewModel
+            {
+                Id = employee.Id,
+                FirstName = employee.Name,
+                LastName = employee.Surname,
+                Patronymic = employee.Patronymic,
+                Age = employee.Age
+            });
         }
     }
 }
