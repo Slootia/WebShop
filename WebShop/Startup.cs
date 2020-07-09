@@ -4,6 +4,9 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using WebShop.Infrastructure.Interfaces;
+using WebShop.Infrastructure.Middleware;
+using WebShop.Infrastructure.Services;
 
 namespace WebShop
 {
@@ -18,6 +21,8 @@ namespace WebShop
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
+            
+            services.AddScoped<IEmployeesData, InMemoryEmployeesData>();
         }
 
         
@@ -32,6 +37,9 @@ namespace WebShop
             app.UseDefaultFiles();
 
             app.UseRouting();
+            app.UseWelcomePage("/welcome");
+
+            app.UseMiddleware<TestMiddleware>();
 
             app.UseEndpoints(endpoints =>
             {

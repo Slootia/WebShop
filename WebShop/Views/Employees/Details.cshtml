@@ -20,8 +20,11 @@
         <dt>Возраст</dt>
         <dd>@Model.Age</dd>
     </dl>
-    <hr/>    
-    <a asp-controller="Employees" asp-action="Index">К списку</a>
+    <hr/> 
+        <div>
+            <a asp-controller="Employees" asp-action="Index" class="btn btn-primary">К списку</a>
+            <a asp-action="Delete" asp-route-id="@Model.Id" class="btn btn-danger">Удалить!</a>
+        </div>
     </body>
 
 </div>

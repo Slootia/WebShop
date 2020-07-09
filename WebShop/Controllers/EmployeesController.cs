@@ -1,60 +1,108 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.VisualStudio.Web.CodeGeneration;
+using WebShop.Infrastructure.Interfaces;
 using WebShop.Models;
+using WebShop.ViewModels;
 
 namespace WebShop.Controllers
 {
     public class EmployeesController : Controller
     {
-        private static readonly List<Employee> _employees = new List<Employee>
-        {
-            new Employee()
-            {
-                Id = 1,
-                Surname = "Иванов",
-                Name = "Иван",
-                Patronymic = "Иванович",
-                Age = 25
-            },
-            new Employee()
-            {
-                Id = 2,
-                Surname = "Петров",
-                Name = "Петр",
-                Patronymic = "Петрович",
-                Age = 52
-            },
-            new Employee()
-            {
-                Id = 3,
-                Surname = "Сидоров",
-                Name = "Алексей",
-                Patronymic = "Семенович",
-                Age = 23
-            },
-            new Employee()
-            {
-                Id = 4,
-                Surname = "Основин",
-                Name = "Александр",
-                Patronymic = "Алексеевич",
-                Age = 38
-            }
-        };
+        private readonly IEmployeesData _employeesData;
 
-
-        public IActionResult Index() => View(_employees);
+        public EmployeesController(IEmployeesData employeesData) =>
+            _employeesData = employeesData;
+        
+        public IActionResult Index() => View(_employeesData.Get());
 
         public IActionResult Details(int id)
         {
-            var employee = _employees.FirstOrDefault(e => e.Id == id);
+            var employee = _employeesData.GetById(id);
             if (employee is null)
                 return NotFound();
 
             return View(employee);
         }
+
+        #region Edit
+        public IActionResult Edit(int? id)
+        {
+            if (id is null)
+                return View(new EmployeesViewModel());
+            if (id < 0)
+            {
+                return BadRequest();
+            }
+
+            var employee = _employeesData.GetById((int) id);
+            if (employee is null)
+                return NotFound();
+
+            return View(new EmployeesViewModel
+            {
+                Id = employee.Id,
+                FirstName = employee.Name,
+                LastName = employee.Surname,
+                Patronymic = employee.Patronymic,
+                Age = employee.Age
+            });
+        }
+
+        [HttpPost]
+        public IActionResult Edit(EmployeesViewModel model)
+        {
+            if (model is null)
+                throw new ArgumentNullException();
+
+            var employee = new Employee
+            {
+                Id = model.Id,
+                Surname = model.LastName,
+                Name = model.FirstName,
+                Patronymic = model.Patronymic,
+                Age = model.Age
+            };
+
+            if (model.Id == 0)
+                _employeesData.Add(employee);
+            else
+                _employeesData.Edit(employee);
+
+            _employeesData.SaveChanges();
+
+            return RedirectToAction(nameof(Index));
+        }
+        #endregion
+
+        #region Delete
+        public IActionResult Delete(int id)
+        {
+            if (id <= 0)
+                return BadRequest();
+
+            var employee = _employeesData.GetById(id);
+            if (employee is null)
+                return NotFound();
+
+            return View(new EmployeesViewModel
+            {
+                Id = employee.Id,
+                FirstName = employee.Name,
+                LastName = employee.Surname,
+                Patronymic = employee.Patronymic,
+                Age = employee.Age
+            });
+        }
+
+        [HttpPost]
+        public IActionResult DeleteConfirmed(int id)
+        {
+            _employeesData.Delete(id);
+            _employeesData.SaveChanges();
+
+            return RedirectToAction(nameof(Index));
+        }
+        #endregion
     }
 }
