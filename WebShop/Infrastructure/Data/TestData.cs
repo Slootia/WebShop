@@ -16,7 +16,8 @@ namespace WebShop.Infrastructure.Data
                 Surname = "Иванов",
                 Name = "Иван",
                 Patronymic = "Иванович",
-                Age = 25
+                Age = 25,
+                EmployementDate = DateTime.Now.Subtract(TimeSpan.FromDays(300*7))
             },
             new Employee()
             {
@@ -24,7 +25,8 @@ namespace WebShop.Infrastructure.Data
                 Surname = "Петров",
                 Name = "Петр",
                 Patronymic = "Петрович",
-                Age = 52
+                Age = 52,
+                EmployementDate = DateTime.Now.Subtract(TimeSpan.FromDays(512*3))
             },
             new Employee()
             {
@@ -32,7 +34,8 @@ namespace WebShop.Infrastructure.Data
                 Surname = "Сидоров",
                 Name = "Алексей",
                 Patronymic = "Семенович",
-                Age = 23
+                Age = 23,
+                EmployementDate = DateTime.Now.Subtract(TimeSpan.FromDays(200*1))
             },
             new Employee()
             {
@@ -40,7 +43,8 @@ namespace WebShop.Infrastructure.Data
                 Surname = "Основин",
                 Name = "Александр",
                 Patronymic = "Алексеевич",
-                Age = 38
+                Age = 38,
+                EmployementDate = DateTime.Now.Subtract(TimeSpan.FromDays(200*1))
             }
         };
     }

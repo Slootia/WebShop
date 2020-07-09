@@ -12,5 +12,6 @@ namespace WebShop.Models
         public string Surname { get; set; }
         public string Patronymic { get; set; }
         public int Age { get; set; }
+        public DateTime EmployementDate { get; set; }
     }
 }

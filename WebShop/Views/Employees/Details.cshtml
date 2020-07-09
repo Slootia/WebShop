@@ -1,4 +1,4 @@
-﻿@model WebShop.Models.Employee
+﻿@model EmployeesViewModel
 
 <div class="container">
     <body>
@@ -8,17 +8,20 @@
         <dt>Id</dt>
         <dd>@Model.Id</dd>
 
-        <dt>Фамилия</dt>
-        <dd>@Model.Surname</dd>
+        <dt><label asp-for="LastName"></label></dt>
+        <dd>@Model.LastName</dd>
 
-        <dt>Имя</dt>
-        <dd>@Model.Name</dd>
+        <dt><label asp-for="FirstName"></label></dt>
+        <dd>@Model.FirstName</dd>
 
-        <dt>Отчество</dt>
+        <dt><label asp-for="Patronymic"></label></dt>
         <dd>@Model.Patronymic</dd>
 
-        <dt>Возраст</dt>
+        <dt><label asp-for="Age"></label></dt>
         <dd>@Model.Age</dd>
+        
+        <dt><label asp-for="EmployementDate"></label></dt>
+        <dd>@Model.EmployementDate</dd>
     </dl>
     <hr/> 
         <div>
