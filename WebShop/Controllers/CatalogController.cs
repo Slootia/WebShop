@@ -12,14 +12,20 @@ namespace WebShop.Controllers
 
         public CatalogController(IProductData productData) => _productData = productData;
 
-        public IActionResult Shop(ProductFilter filter)
+        public IActionResult Shop(int? brandId, int? sectionId)
         {
+            var filter = new ProductFilter
+            {
+                BrandId = brandId,
+                SectionId = sectionId
+            };
+
             var products = _productData.GetProducts(filter);
 
             return View(new CatalogViewModel()
             {
-                SectionId = filter.SectionId,
-                BrandId = filter.BrandId,
+                SectionId = sectionId,
+                BrandId = brandId,
                 Products = products.Select(p => new ProductViewModel
                 {
                     Id = p.Id,
