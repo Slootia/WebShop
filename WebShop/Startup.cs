@@ -23,6 +23,8 @@ namespace WebShop
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
             
             services.AddScoped<IEmployeesData, InMemoryEmployeesData>();
+
+            services.AddScoped<IProductData, InMemoryProductData>();
         }
 
         

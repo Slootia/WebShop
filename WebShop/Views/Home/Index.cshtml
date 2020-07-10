@@ -1,4 +1,17 @@
-﻿<partial name="Partial/_Slider"/>
+﻿@using WebShop.Domain.Entities
+@using WebShop.Infrastructure.Interfaces
+@inject IProductData ProductData
+@{
+    var product = ProductData.GetProducts().Take(6).Select(p => new ProductViewModel
+    {
+        Id = p.Id,
+        Name = p.Name,
+        ImageUrl = p.ImageUrl,
+        Order = p.Order,
+        Price = p.Price
+    }).OrderBy(p=>p.Order);
+}
+<partial name="Partial/_Slider"/>
 
 <section>
     <div class="container">
@@ -6,7 +19,7 @@
             <partial name="Partial/_LeftSideBar"/>
 
             <div class="col-sm-9 padding-right">
-                <partial name="Partial/_FeaturesItems"/>
+                <partial name="Partial/_FeaturesItems" model="product"/>
                 <partial name="Partial/_CategoryTab"/>
                 <partial name="Partial/_RecomendedItems"/>
 

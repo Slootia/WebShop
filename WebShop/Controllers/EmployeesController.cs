@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.VisualStudio.Web.CodeGeneration;
 using WebShop.Infrastructure.Interfaces;
@@ -14,7 +15,15 @@ namespace WebShop.Controllers
         public EmployeesController(IEmployeesData employeesData) =>
             _employeesData = employeesData;
         
-        public IActionResult Index() => View(_employeesData.Get());
+        public IActionResult Index() => View(_employeesData.Get().Select(employee => new EmployeesViewModel
+        {
+            Id = employee.Id,
+            FirstName = employee.Name,
+            LastName = employee.Surname,
+            Patronymic = employee.Patronymic,
+            Age = employee.Age,
+            EmployementDate = employee.EmployementDate
+        }));
 
         public IActionResult Details(int id)
         {
@@ -22,7 +31,15 @@ namespace WebShop.Controllers
             if (employee is null)
                 return NotFound();
 
-            return View(employee);
+            return View(new EmployeesViewModel
+            {
+                Id = employee.Id,
+                FirstName = employee.Name,
+                LastName = employee.Surname,
+                Patronymic = employee.Patronymic,
+                Age = employee.Age,
+                EmployementDate = employee.EmployementDate
+            });
         }
 
         #region Edit
@@ -45,7 +62,8 @@ namespace WebShop.Controllers
                 FirstName = employee.Name,
                 LastName = employee.Surname,
                 Patronymic = employee.Patronymic,
-                Age = employee.Age
+                Age = employee.Age,
+                EmployementDate = employee.EmployementDate
             });
         }
 
@@ -55,13 +73,17 @@ namespace WebShop.Controllers
             if (model is null)
                 throw new ArgumentNullException();
 
+            if (!ModelState.IsValid)
+                return View(model);
+
             var employee = new Employee
             {
                 Id = model.Id,
                 Surname = model.LastName,
                 Name = model.FirstName,
                 Patronymic = model.Patronymic,
-                Age = model.Age
+                Age = model.Age,
+                EmployementDate = model.EmployementDate
             };
 
             if (model.Id == 0)
@@ -91,7 +113,8 @@ namespace WebShop.Controllers
                 FirstName = employee.Name,
                 LastName = employee.Surname,
                 Patronymic = employee.Patronymic,
-                Age = employee.Age
+                Age = employee.Age,
+                EmployementDate = employee.EmployementDate
             });
         }
 
