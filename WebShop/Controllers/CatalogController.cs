@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using WebShop.Domain;
 using WebShop.Infrastructure.Interfaces;
+using WebShop.Infrastructure.Interfaces.Mapping;
 using WebShop.ViewModels;
 
 namespace WebShop.Controllers
@@ -26,14 +27,7 @@ namespace WebShop.Controllers
             {
                 SectionId = sectionId,
                 BrandId = brandId,
-                Products = products.Select(p => new ProductViewModel
-                {
-                    Id = p.Id,
-                    Name = p.Name,
-                    Order = p.Order,
-                    ImageUrl = p.ImageUrl,
-                    Price = p.Price
-                }).OrderBy(p => p.Order)
+                Products = products.ToView().OrderBy(p => p.Order)
             });
         }
     }
