@@ -10,6 +10,7 @@ using WebShop.Data;
 using WebShop.Infrastructure.Interfaces;
 using WebShop.Infrastructure.Middleware;
 using WebShop.Infrastructure.Services;
+using WebShop.Infrastructure.Services.InMemory;
 
 namespace WebShop
 {
