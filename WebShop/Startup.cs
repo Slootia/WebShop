@@ -1,9 +1,11 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using WebShop.DAL.Context;
 using WebShop.Infrastructure.Interfaces;
 using WebShop.Infrastructure.Middleware;
 using WebShop.Infrastructure.Services;
@@ -20,6 +22,8 @@ namespace WebShop
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<WebShopDB>(opt => opt.UseSqlServer(_configuration.GetConnectionString("DefaultConnection")));
+
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
             
             services.AddScoped<IEmployeesData, InMemoryEmployeesData>();
