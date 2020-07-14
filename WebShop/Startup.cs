@@ -11,6 +11,7 @@ using WebShop.Infrastructure.Interfaces;
 using WebShop.Infrastructure.Middleware;
 using WebShop.Infrastructure.Services;
 using WebShop.Infrastructure.Services.InMemory;
+using WebShop.Infrastructure.Services.InSQL;
 
 namespace WebShop
 {
@@ -32,7 +33,7 @@ namespace WebShop
             
             services.AddScoped<IEmployeesData, InMemoryEmployeesData>();
 
-            services.AddScoped<IProductData, InMemoryProductData>();
+            services.AddScoped<IProductData, SqlProductData>();
         }
 
         
