@@ -5,7 +5,7 @@ using WebShop.Domain.Entities;
 using WebShop.Infrastructure.Data;
 using WebShop.Infrastructure.Interfaces;
 
-namespace WebShop.Infrastructure.Services
+namespace WebShop.Infrastructure.Services.InMemory
 {
     public class InMemoryProductData : IProductData
     {
