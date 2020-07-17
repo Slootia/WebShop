@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using WebShop.Models;
+using WebShop.Domain.Entities;
 using WebShop.ViewModels;
 
 namespace WebShop.Infrastructure.Interfaces.Mapping

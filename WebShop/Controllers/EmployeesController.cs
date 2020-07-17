@@ -4,7 +4,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.VisualStudio.Web.CodeGeneration;
 using WebShop.Infrastructure.Interfaces;
 using WebShop.Infrastructure.Interfaces.Mapping;
-using WebShop.Models;
 using WebShop.ViewModels;
 
 namespace WebShop.Controllers

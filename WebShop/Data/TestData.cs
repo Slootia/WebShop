@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using WebShop.Models;
 using WebShop.Domain.Entities;
 
 namespace WebShop.Infrastructure.Data
