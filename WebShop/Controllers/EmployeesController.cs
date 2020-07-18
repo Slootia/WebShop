@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.VisualStudio.Web.CodeGeneration;
 using WebShop.Infrastructure.Interfaces;
@@ -8,6 +9,7 @@ using WebShop.ViewModels;
 
 namespace WebShop.Controllers
 {
+    [Authorize]
     public class EmployeesController : Controller
     {
         private readonly IEmployeesData _employeesData;
