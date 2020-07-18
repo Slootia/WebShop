@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using WebShop.Domain.Entities;
 using WebShop.Infrastructure.Data;
 using WebShop.Infrastructure.Interfaces;
-using WebShop.Models;
 
 namespace WebShop.Infrastructure.Services.InMemory
 {

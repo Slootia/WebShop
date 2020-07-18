@@ -23,7 +23,13 @@ namespace WebShop.Data
             //        throw new InvalidOperationException("Ошибка при создании БД");
 
             db.Migrate();
+            InitializeProducts();
+            InitializeEmployees();
+        }
 
+        private void InitializeProducts()
+        {
+            var db = _db.Database;
             //if (_db.Products.Any()) return;
 
             //using (db.BeginTransaction())
@@ -62,8 +68,8 @@ namespace WebShop.Data
             var brands = TestData.Brands;
 
             var product_section = products.Join(
-                sections, 
-                p => p.SectionId, 
+                sections,
+                p => p.SectionId,
                 s => s.Id,
                 (product, section) => (product, section));
 
@@ -111,6 +117,22 @@ namespace WebShop.Data
                 _db.Products.AddRange(products);
                 _db.SaveChanges();
                 db.CommitTransaction();
+            }
+        }
+
+        private void InitializeEmployees()
+        {
+            if (_db.Employees.Any()) return;
+
+            using (_db.Database.BeginTransaction())
+            {
+                TestData.Empolyees.ForEach(employee => employee.Id = 0);
+
+                _db.Employees.AddRange(TestData.Empolyees);
+
+                _db.SaveChanges();
+
+                _db.Database.CommitTransaction();
             }
         }
     }
