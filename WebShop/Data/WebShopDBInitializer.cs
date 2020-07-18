@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using WebShop.DAL.Context;
+using WebShop.Domain.Identity;
 using WebShop.Infrastructure.Data;
 
 namespace WebShop.Data
@@ -11,8 +13,15 @@ namespace WebShop.Data
     public class WebShopDBInitializer
     {
         private readonly WebShopDB _db;
+        private readonly UserManager<User> _userManager;
+        private readonly RoleManager<Role> _roleManager;
 
-        public WebShopDBInitializer(WebShopDB db) => _db = db;
+        public WebShopDBInitializer(WebShopDB db, UserManager<User> userManager, RoleManager<Role> roleManager)
+        {
+            _db = db;
+            _userManager = userManager;
+            _roleManager = roleManager;
+        }
 
         public void Initialize()
         {
@@ -25,8 +34,9 @@ namespace WebShop.Data
             db.Migrate();
             InitializeProducts();
             InitializeEmployees();
+            InitializeIdentityAsync().Wait();
         }
-
+        
         private void InitializeProducts()
         {
             var db = _db.Database;
@@ -134,6 +144,37 @@ namespace WebShop.Data
 
                 _db.Database.CommitTransaction();
             }
+        }
+
+        private async Task InitializeIdentityAsync()
+        {
+            async Task CheckRoleExist(string roleName)
+            {
+                if (!await _roleManager.RoleExistsAsync(roleName))
+                    await _roleManager.CreateAsync(new Role {Name = roleName});
+            }
+
+            await CheckRoleExist(Role.Administrator);
+            await CheckRoleExist(Role.User);
+
+            if (await _userManager.FindByNameAsync(User.Administrator) is null)
+            {
+                var admin = new User {UserName = User.Administrator};
+                var creationResult = await _userManager.CreateAsync(admin, User.DefaultAdminPassword);
+                if (creationResult.Succeeded)
+                {
+                    await _userManager.AddToRoleAsync(admin, Role.Administrator);
+                }
+                else
+                {
+                    var errors = creationResult.Errors.Select(e => e.Description);
+                    throw  new InvalidOperationException($"Ошибка при создании пользователя Администратор: {string.Join(", ", errors)}");
+                }
+
+            }
+
+
+
         }
     }
 }
