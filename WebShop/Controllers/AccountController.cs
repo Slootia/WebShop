@@ -38,6 +38,8 @@ namespace WebShop.Controllers
 
             if (registrationResult.Succeeded)
             {
+                await _userManager.AddToRoleAsync(user, Role.User);
+
                 await _signInManager.SignInAsync(user, false);
                 return RedirectToAction("Index", "Home");
             }
