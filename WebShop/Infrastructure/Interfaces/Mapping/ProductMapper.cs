@@ -15,7 +15,8 @@ namespace WebShop.Infrastructure.Interfaces.Mapping
             Name = p.Name,
             Order = p.Order,
             ImageUrl = p.ImageUrl,
-            Price = p.Price
+            Price = p.Price,
+            Brand = p.Brand?.Name
         };
 
         public static IEnumerable<ProductViewModel> ToView(this IEnumerable<Product> products) =>
