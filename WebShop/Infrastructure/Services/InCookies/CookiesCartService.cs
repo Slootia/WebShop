@@ -1,11 +1,11 @@
-﻿using System;
-using System.Linq;
-using System.Net.NetworkInformation;
+﻿using System.Linq;
 using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
+using WebShop.Domain;
 using WebShop.Infrastructure.Interfaces;
 using WebShop.ViewModels;
 using WebShop.Domain.Entities;
+using WebShop.Infrastructure.Interfaces.Mapping;
 
 namespace WebShop.Infrastructure.Services.InCookies
 {
@@ -105,7 +105,18 @@ namespace WebShop.Infrastructure.Services.InCookies
 
         public CartViewModel TransformFromCart()
         {
-            throw new NotImplementedException();
+            var products = _productData.GetProducts(
+                new ProductFilter
+                {
+                    Ids = Cart.Items.Select(item => item.ProductId).ToArray()
+                });
+
+            var productsViewModels = products.ToView().ToDictionary(p => p.Id);
+
+            return new CartViewModel
+            {
+                Items = Cart.Items.Select(item => (productsViewModels[item.ProductId], item.Quantity))
+            };
         }
     }
 }

@@ -11,6 +11,7 @@ using WebShop.Data;
 using WebShop.Domain.Identity;
 using WebShop.Infrastructure.Interfaces;
 using WebShop.Infrastructure.Middleware;
+using WebShop.Infrastructure.Services.InCookies;
 using WebShop.Infrastructure.Services.InSQL;
 
 namespace WebShop
@@ -31,6 +32,8 @@ namespace WebShop
             services.AddScoped<IEmployeesData, SqlEmployeesData>();
 
             services.AddScoped<IProductData, SqlProductData>();
+
+            services.AddScoped<ICartService, CookiesCartService>();
 
             services.AddIdentity<User, Role>()
                 .AddEntityFrameworkStores<WebShopDB>()
