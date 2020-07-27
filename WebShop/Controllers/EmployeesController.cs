@@ -1,13 +1,16 @@
 ﻿using System;
 using System.Linq;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.VisualStudio.Web.CodeGeneration;
+using WebShop.Domain.Identity;
 using WebShop.Infrastructure.Interfaces;
 using WebShop.Infrastructure.Interfaces.Mapping;
 using WebShop.ViewModels;
 
 namespace WebShop.Controllers
 {
+    [Authorize]
     public class EmployeesController : Controller
     {
         private readonly IEmployeesData _employeesData;
@@ -27,6 +30,7 @@ namespace WebShop.Controllers
         }
 
         #region Edit
+        [Authorize(Roles = Role.Administrator)]
         public IActionResult Edit(int? id)
         {
             if (id is null)
@@ -64,6 +68,7 @@ namespace WebShop.Controllers
         #endregion
 
         #region Delete
+        [Authorize(Roles = Role.Administrator)]
         public IActionResult Delete(int id)
         {
             if (id <= 0)

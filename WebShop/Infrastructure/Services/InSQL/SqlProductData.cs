@@ -26,11 +26,23 @@ namespace WebShop.Infrastructure.Services.InSQL
                 .Include(p => p.Brand)
                 .Include(p => p.Section);
 
-            if (filter?.BrandId !=null) query = query.Where(p => p.BrandId == filter.BrandId);
+            if (filter?.Ids?.Length > 0)
+            {
+                query = query.Where(product => filter.Ids.Contains(product.Id));
+            }
+            else
+            {
+                if (filter?.BrandId != null) query = query.Where(p => p.BrandId == filter.BrandId);
 
-            if (filter?.SectionId != null) query = query.Where(p => p.SectionId == filter.SectionId);
+                if (filter?.SectionId != null) query = query.Where(p => p.SectionId == filter.SectionId);
+            }
 
             return query;
         }
+
+        public Product GetProductById(int id) =>
+            _db.Products.Include(p => p.Brand)
+                .Include(p => p.Section)
+                .FirstOrDefault(p => p.Id == id);
     }
 }
