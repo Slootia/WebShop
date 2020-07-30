@@ -1,0 +1,41 @@
+﻿@model IEnumerable<Product>
+@{
+    ViewData["Title"] = "Список товаров";
+}
+
+<table class ="table">
+    <thead>
+    <tr>
+        <th></th>
+        <th>@Html.DisplayNameFor(p => p.Name)</th>
+        <th>@Html.DisplayNameFor(p => p.Brand)</th>
+        <th>@Html.DisplayNameFor(p => p.Section)</th>
+        <th>@Html.DisplayNameFor(p => p.ImageUrl)</th>
+        <th>@Html.DisplayNameFor(p => p.Price)</th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var p in Model)
+    {
+        <tr>
+            <td>
+                <a asp-action="Edit" asp-route-id="@p.Id">
+                    <i class="glyphicon glyphicon-edit"></i>
+                </a>
+            </td>
+            <td>@Html.DisplayFor(m => p.Name)</td>
+            <td>@Html.DisplayFor(m => p.Brand.Name)</td>
+            <td>@Html.DisplayFor(m => p.Section.Name)</td>
+            <td><img src="~/images/shop/@p.ImageUrl" width="50" alt="@p.Name"/></td>
+            <td>@Html.DisplayFor(m => p.Price)</td>
+            <td>
+                <a asp-action="Delete" asp-route-id="@p.Id" title="Удалить" class="text-danger">
+                    <i class="glyphicon glyphicon-remove"></i>
+                </a>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
+
