@@ -39,6 +39,8 @@ namespace WebShop
                 .AddEntityFrameworkStores<WebShopDB>()
                 .AddDefaultTokenProviders();
 
+            services.AddScoped<IOrderService, SqlOrderService>();
+
             services.Configure<IdentityOptions>(opt =>
             {
 #if DEBUG
