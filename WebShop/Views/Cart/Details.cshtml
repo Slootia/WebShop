@@ -1,4 +1,4 @@
-﻿@model CartViewModel
+﻿@model CartOrderViewModel
 @{
     ViewData["Title"] = "Details";
 }
@@ -24,7 +24,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                @foreach (var (product, quantity) in Model.Items)
+                    @foreach (var (product, quantity) in Model.Cart.Items)
                     {
                         <tr>
                             <td class="cart_product">
@@ -36,28 +36,60 @@
                                         @product.Name
                                     </a>
                                 </h4>
-                                <p>Web ID: @product.Id.ToString("000000")</p>
+                                <p>Артикул: @product.Id.ToString("0000000")</p>
                             </td>
                             <td class="cart_price">
                                 <p>@product.Price.ToString("C")</p>
                             </td>
                             <td class="cart_quantity">
                                 <div class="cart_quantity_button">
-                                    <a class="cart_quantity_up" asp-controller="Cart" asp-action="AddToCart" asp-route-id="@product.Id"> + </a>
-                                    <input class="cart_quantity_input" type="text" name="quantity" value="@quantity" autocomplete="off" size="2">
-                                    <a class="cart_quantity_down" asp-controller="Cart" asp-action="DecrementFromCart" asp-route-id="@product.Id"> - </a>
+                                    <a asp-controller="Cart"
+                                       asp-action="AddToCart"
+                                       asp-route-id="@product.Id"
+                                       class="cart_quantity_up">
+                                        +
+                                    </a>
+                                    <input class="cart_quantity_input"
+                                           type="text"
+                                           name="quantity"
+                                           value="@quantity"
+                                           autocomplete="off"
+                                           size="2">
+                                    <a asp-controller="Cart"
+                                       asp-action="DecrementFromCart"
+                                       asp-route-id="@product.Id"
+                                       class="cart_quantity_down">
+                                        -
+                                    </a>
                                 </div>
                             </td>
                             <td class="cart_total">
                                 <p class="cart_total_price">@((product.Price * quantity).ToString("C"))</p>
                             </td>
                             <td class="cart_delete">
-                                <a class="cart_quantity_delete" asp-controller="Cart" asp-action="RemoveFromCart" asp-route-id="@product.Id"><i class="fa fa-times"></i></a>
+                                <a asp-controller="Cart"
+                                   asp-action="RemoveFromCart"
+                                   asp-route-id="@product.Id"
+                                   class="cart_quantity_delete">
+                                    <i class="fa fa-times"></i>
+                                </a>
                             </td>
                         </tr>
                     }
+
                 </tbody>
             </table>
         </div>
     </div>
 </section> <!--/#cart_items-->
+
+<section id="do_action">
+    <div class="container">
+        <div class="heading">
+            <h3>Что бы Вы хотели сделать далее?</h3>
+            <p>Choose if you have a discount code or reward points you want to use or would like to estimate your delivery cost.</p>
+        </div>
+
+        <partial name="Partial/_CheckOut" model="@Model.Order" view-data="@(new ViewDataDictionary(ViewData) { { "TotalPrice", Model.Cart.TotalPrice } })" />
+    </div>
+</section><!--/#do_action-->
