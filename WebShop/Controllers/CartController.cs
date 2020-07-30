@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using WebShop.Infrastructure.Interfaces;
 using WebShop.ViewModels;
@@ -37,6 +38,7 @@ namespace WebShop.Controllers
             return RedirectToAction(nameof(Details));
         }
 
+        [Authorize]
         public async Task<IActionResult> CheckOut(OrderViewModel OrderModel, [FromServices] IOrderService OrderService)
         {
             if (!ModelState.IsValid)
