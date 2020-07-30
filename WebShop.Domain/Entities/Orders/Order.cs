@@ -18,7 +18,7 @@ namespace WebShop.Domain.Entities.Orders
 
         public DateTime Date { get; set; }
 
-        public virtual ICollection<OrderItem> Items { get; set; }
+        public virtual ICollection<OrderItem> Items { get; set; } = new List<OrderItem>();
     }
 
     public class OrderItem : Entity
