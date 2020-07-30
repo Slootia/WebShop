@@ -4,8 +4,8 @@
     "inputFiles": [
       //"wwwroot/css/animate.css",
       //"wwwroot/css/responsive.css",
-      "wwwroot/css/main.css",
-      "wwwroot/css/price-range.css"
+      "wwwroot/css/price-range.css",
+      "wwwroot/css/main.css"
     ]
   },
   {
