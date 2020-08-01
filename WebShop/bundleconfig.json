@@ -4,15 +4,15 @@
     "inputFiles": [
       //"wwwroot/css/animate.css",
       //"wwwroot/css/responsive.css",
-      "wwwroot/css/main.css",
-      "wwwroot/css/price-range.css"
+      "wwwroot/css/price-range.css",
+      "wwwroot/css/main.css"
     ]
   },
   {
     "outputFileName": "wwwroot/js/site.js",
     "inputFiles": [
       //"wwwroot/js/contact.js",
-      "wwwroot/js/gmap.js",
+      "wwwroot/js/gmaps.js",
       "wwwroot/js/price-range.js",
       "wwwroot/js/main.js"
     ],

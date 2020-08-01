@@ -4,6 +4,7 @@ using System.Text;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using WebShop.Domain.Entities;
+using WebShop.Domain.Entities.Orders;
 using WebShop.Domain.Identity;
 
 namespace WebShop.DAL.Context
@@ -15,6 +16,8 @@ namespace WebShop.DAL.Context
         public DbSet<Brand> Brands { get; set; }
 
         public DbSet<Employee> Employees { get; set; }
+        public DbSet<Order> Orders { get; set; }
+        public DbSet<OrderItem> OrderItems { get; set; }
 
         public WebShopDB(DbContextOptions<WebShopDB> options) : base(options) { }
     }

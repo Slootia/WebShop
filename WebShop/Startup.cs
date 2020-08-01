@@ -39,6 +39,8 @@ namespace WebShop
                 .AddEntityFrameworkStores<WebShopDB>()
                 .AddDefaultTokenProviders();
 
+            services.AddScoped<IOrderService, SqlOrderService>();
+
             services.Configure<IdentityOptions>(opt =>
             {
 #if DEBUG
@@ -92,6 +94,10 @@ namespace WebShop
 
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapControllerRoute(
+                    name: "areas",
+                    pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
+
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
