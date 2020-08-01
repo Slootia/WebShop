@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="newtonsoft.json" Version="12.0.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Common\WebShop.Domain\WebShop.Domain.csproj" />
+    <ProjectReference Include="..\WebShop.DAL\WebShop.DAL.csproj" />
+    <ProjectReference Include="..\WebShop.Interfaces\WebShop.Interfaces.csproj" />
+  </ItemGroup>
+
+</Project>
