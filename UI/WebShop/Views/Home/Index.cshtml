@@ -1,20 +1,26 @@
 ﻿@using WebShop.Interfaces
 @using WebShop.Interfaces.Mapping
+@model IEnumerable<string>
 @inject IProductData ProductData
 @{
-    var product = ProductData.GetProducts().Take(6).ToView().OrderBy(p=>p.Order);
+    var product = ProductData.GetProducts().Take(6).ToView().OrderBy(p => p.Order);
 }
-<partial name="Partial/_Slider"/>
+<partial name="Partial/_Slider" />
 
 <section>
     <div class="container">
         <div class="row">
-            <partial name="Partial/_LeftSideBar"/>
+            @foreach (var item in Model)
+            {
+                <p>@item</p>
+            }
+
+            <partial name="Partial/_LeftSideBar" />
 
             <div class="col-sm-9 padding-right">
-                <partial name="Partial/_FeaturesItems" model="product"/>
-                <partial name="Partial/_CategoryTab"/>
-                <partial name="Partial/_RecomendedItems"/>
+                <partial name="Partial/_FeaturesItems" model="product" />
+                <partial name="Partial/_CategoryTab" />
+                <partial name="Partial/_RecomendedItems" />
 
             </div>
         </div>

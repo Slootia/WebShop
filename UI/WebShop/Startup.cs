@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using WebShop.Clients;
 using WebShop.DAL.Context;
 using WebShop.DAL.Data;
 using WebShop.Domain.Identity;
@@ -35,11 +36,15 @@ namespace WebShop
 
             services.AddScoped<ICartService, CookiesCartService>();
 
+            services.AddTransient<IValuesService, ValuesClient>();
+
             services.AddIdentity<User, Role>()
                 .AddEntityFrameworkStores<WebShopDB>()
                 .AddDefaultTokenProviders();
 
             services.AddScoped<IOrderService, SqlOrderService>();
+
+
 
             services.Configure<IdentityOptions>(opt =>
             {

@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
@@ -33,6 +33,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Common\WebShop.Domain\WebShop.Domain.csproj" />
+    <ProjectReference Include="..\..\Services\WebShop.Clients\WebShop.Clients.csproj" />
     <ProjectReference Include="..\..\Services\WebShop.DAL\WebShop.DAL.csproj" />
     <ProjectReference Include="..\..\Services\WebShop.Interfaces\WebShop.Interfaces.csproj" />
     <ProjectReference Include="..\..\Services\WebShop.Services\WebShop.Services.csproj" />
