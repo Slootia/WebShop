@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using WebShop.Domain.Entities;
-using WebShop.ViewModels;
+using WebShop.Domain.ViewModels;
 
-namespace WebShop.Infrastructure.Interfaces.Mapping
+namespace WebShop.Interfaces.Mapping
 {
     public static class ProductMapper
     {

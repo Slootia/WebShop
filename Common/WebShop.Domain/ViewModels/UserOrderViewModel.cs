@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace WebShop.ViewModels
+namespace WebShop.Domain.ViewModels
 {
     public class UserOrderViewModel
     {

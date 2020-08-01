@@ -1,9 +1,9 @@
 ﻿using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using WebShop.Domain;
-using WebShop.Infrastructure.Interfaces;
-using WebShop.Infrastructure.Interfaces.Mapping;
-using WebShop.ViewModels;
+using WebShop.Domain.ViewModels;
+using WebShop.Interfaces;
+using WebShop.Interfaces.Mapping;
 
 namespace WebShop.Controllers
 {

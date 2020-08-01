@@ -2,7 +2,7 @@
 using WebShop.Domain;
 using WebShop.Domain.Entities;
 
-namespace WebShop.Infrastructure.Interfaces
+namespace WebShop.Interfaces
 {
     public interface IProductData
     {

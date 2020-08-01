@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using WebShop.DAL.Data;
 using WebShop.Domain;
 using WebShop.Domain.Entities;
-using WebShop.Infrastructure.Data;
-using WebShop.Infrastructure.Interfaces;
+using WebShop.Interfaces;
 
-namespace WebShop.Infrastructure.Services.InMemory
+namespace WebShop.Services.InMemory
 {
     public class InMemoryProductData : IProductData
     {

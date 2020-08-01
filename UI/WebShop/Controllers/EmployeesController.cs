@@ -1,12 +1,10 @@
 ﻿using System;
-using System.Linq;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.VisualStudio.Web.CodeGeneration;
 using WebShop.Domain.Identity;
-using WebShop.Infrastructure.Interfaces;
-using WebShop.Infrastructure.Interfaces.Mapping;
-using WebShop.ViewModels;
+using WebShop.Domain.ViewModels;
+using WebShop.Interfaces;
+using WebShop.Interfaces.Mapping;
 
 namespace WebShop.Controllers
 {

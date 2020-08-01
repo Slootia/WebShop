@@ -1,10 +1,8 @@
 ﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.VisualStudio.Web.CodeGeneration;
 using WebShop.Domain.Identity;
-using WebShop.ViewModels.Identity;
+using WebShop.Domain.ViewModels.Identity;
 
 namespace WebShop.Controllers
 {

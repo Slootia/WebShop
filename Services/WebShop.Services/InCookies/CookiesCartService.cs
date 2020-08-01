@@ -2,12 +2,12 @@
 using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
 using WebShop.Domain;
-using WebShop.Infrastructure.Interfaces;
-using WebShop.ViewModels;
 using WebShop.Domain.Entities;
-using WebShop.Infrastructure.Interfaces.Mapping;
+using WebShop.Domain.ViewModels;
+using WebShop.Interfaces;
+using WebShop.Interfaces.Mapping;
 
-namespace WebShop.Infrastructure.Services.InCookies
+namespace WebShop.Services.InCookies
 {
     public class CookiesCartService : ICartService
     {

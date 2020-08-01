@@ -7,12 +7,12 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using WebShop.DAL.Context;
-using WebShop.Data;
+using WebShop.DAL.Data;
 using WebShop.Domain.Identity;
-using WebShop.Infrastructure.Interfaces;
 using WebShop.Infrastructure.Middleware;
-using WebShop.Infrastructure.Services.InCookies;
-using WebShop.Infrastructure.Services.InSQL;
+using WebShop.Interfaces;
+using WebShop.Services.InCookies;
+using WebShop.Services.InSQL;
 
 namespace WebShop
 {

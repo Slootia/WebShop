@@ -1,6 +1,5 @@
-﻿@using WebShop.Domain.Entities
-@using WebShop.Infrastructure.Interfaces
-@using WebShop.Infrastructure.Interfaces.Mapping
+﻿@using WebShop.Interfaces
+@using WebShop.Interfaces.Mapping
 @inject IProductData ProductData
 @{
     var product = ProductData.GetProducts().Take(6).ToView().OrderBy(p=>p.Order);

@@ -7,10 +7,10 @@ using Microsoft.EntityFrameworkCore;
 using WebShop.DAL.Context;
 using WebShop.Domain.Entities.Orders;
 using WebShop.Domain.Identity;
-using WebShop.Infrastructure.Interfaces;
-using WebShop.ViewModels;
+using WebShop.Domain.ViewModels;
+using WebShop.Interfaces;
 
-namespace WebShop.Infrastructure.Services.InSQL
+namespace WebShop.Services.InSQL
 {
     public class SqlOrderService : IOrderService
     {

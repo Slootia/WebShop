@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using WebShop.Domain.Entities.Base.Interfaces;
 
-namespace WebShop.ViewModels
+namespace WebShop.Domain.ViewModels
 {
     public class SectionViewModel : INamedEntity, IOrderedEntity
     {

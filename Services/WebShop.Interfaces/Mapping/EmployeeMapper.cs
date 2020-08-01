@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using WebShop.Domain.Entities;
-using WebShop.ViewModels;
+using WebShop.Domain.ViewModels;
 
-namespace WebShop.Infrastructure.Interfaces.Mapping
+namespace WebShop.Interfaces.Mapping
 {
     public static class EmployeeMapper
     {

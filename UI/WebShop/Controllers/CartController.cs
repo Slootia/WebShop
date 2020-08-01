@@ -1,8 +1,8 @@
 ﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using WebShop.Infrastructure.Interfaces;
-using WebShop.ViewModels;
+using WebShop.Domain.ViewModels;
+using WebShop.Interfaces;
 
 namespace WebShop.Controllers
 {

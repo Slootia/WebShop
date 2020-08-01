@@ -1,14 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using WebShop.DAL.Context;
 using WebShop.Domain.Identity;
-using WebShop.Infrastructure.Data;
 
-namespace WebShop.Data
+namespace WebShop.DAL.Data
 {
     public class WebShopDBInitializer
     {
